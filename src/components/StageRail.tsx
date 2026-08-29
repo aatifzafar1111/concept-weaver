@@ -46,23 +46,22 @@ export function StageRail({
                   aria-selected={isActive}
                   tabIndex={isActive ? 0 : -1}
                   onClick={() => onChange(s.id)}
-                  className={`flex w-full items-baseline gap-3 border-l-2 py-2 pl-4 text-left transition-colors ${
-                    isActive
-                      ? "border-accent"
-                      : "border-transparent hover:border-rule"
+                  className={`group flex w-full items-baseline gap-3 border-l-2 py-2 pl-4 text-left transition-all duration-200 hover:translate-x-1 ${
+                    isActive ? "border-accent" : "border-transparent hover:border-rule"
                   }`}
                 >
-                  <span className={`font-mono text-[11px] ${isActive ? "text-accent" : "text-muted-foreground"}`}>
+                  <span className={`font-mono text-[11px] tracking-[0.18em] ${isActive ? "text-accent" : "text-muted-foreground"}`}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span>
                     <span
                       className={`block font-display text-lg leading-tight ${
-                        isActive ? "" : "text-muted-foreground"
+                        isActive ? "" : "text-muted-foreground group-hover:text-foreground"
                       }`}
                     >
                       {s.label}
                     </span>
+
                     <span className="text-xs text-muted-foreground">{s.caption}</span>
                   </span>
                 </button>

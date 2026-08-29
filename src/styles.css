@@ -55,7 +55,7 @@
 
 :root {
   --radius: 0.25rem;
-  --font-serif-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-serif-display: "Bodoni Moda", "Didot", "Iowan Old Style", Georgia, serif;
   --font-body-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-body-mono: "IBM Plex Mono", ui-monospace, monospace;
 
@@ -151,26 +151,56 @@
   h2,
   h3 {
     font-family: var(--font-serif-display);
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-weight: 500;
+    font-variation-settings: "opsz" 72;
+    letter-spacing: -0.015em;
+  }
+
+  h1 {
+    font-weight: 600;
+    font-variation-settings: "opsz" 96;
   }
 
   :focus-visible {
     outline: 2px solid var(--color-ring);
-    outline-offset: 2px;
+    outline-offset: 3px;
   }
 }
 
 @utility label-eyebrow {
   font-family: var(--font-body-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-muted-foreground);
 }
 
+/* Structural / utility text: numbers, field labels, section markers. */
+@utility label-util {
+  font-family: var(--font-body-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
 @utility rule-top {
   border-top: 1px solid var(--color-rule);
+}
+
+/* Barely-there paper grain over the whole surface. */
+@utility paper-grain {
+  position: relative;
+}
+@utility paper-grain-layer {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
 }
 
 @keyframes stage-in {
@@ -188,11 +218,29 @@
   animation: stage-in 220ms ease-out both;
 }
 
+/* Underline that draws itself left-to-right on focus/hover. */
+@utility draw-rule {
+  position: relative;
+}
+@utility draw-rule-line {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  background-color: var(--color-accent);
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
+
