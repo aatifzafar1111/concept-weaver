@@ -55,9 +55,14 @@
 
 :root {
   --radius: 0.25rem;
-  --font-serif-display: "Bodoni Moda", "Didot", "Iowan Old Style", Georgia, serif;
+  /* Display font is a single swappable variable — change it here (or via the
+     data-display theme blocks below) and every heading follows. */
+  --font-serif-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --display-weight: 600;
+  --display-variation: "opsz" 96, "SOFT" 0, "WONK" 1;
+  --display-tracking: -0.02em;
   --font-body-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-body-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body-mono: "Space Mono", "IBM Plex Mono", ui-monospace, monospace;
 
   --background: oklch(0.972 0.008 85);
   --paper: oklch(0.988 0.005 85);
@@ -151,18 +156,9 @@
   h2,
   h3 {
     font-family: var(--font-serif-display);
-    font-weight: 500;
-    font-variation-settings: "opsz" 72;
-    letter-spacing: -0.015em;
-  }
-
-  /* Headline: pinned to a single fixed optical size + weight so the variable
-     font never sits mid-interpolation (which renders warped strokes). */
-  h1 {
-    font-weight: 600;
-    font-variation-settings:
-      "opsz" 96,
-      "wght" 600;
+    font-weight: var(--display-weight);
+    font-variation-settings: var(--display-variation);
+    letter-spacing: var(--display-tracking);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
   }
@@ -250,3 +246,36 @@
   }
 }
 
+
+/* ------------------------------------------------------------------
+   Display font options — swap by setting data-display on <html>.
+   A = Fraunces + Space Mono labels (default)
+   B = Instrument Serif + Inter body + IBM Plex Mono labels
+   C = Newsreader + IBM Plex Mono labels
+------------------------------------------------------------------ */
+html[data-display="a"] {
+  --font-serif-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --display-weight: 600;
+  --display-variation: "opsz" 96, "SOFT" 0, "WONK" 1, "wght" 600;
+  --display-tracking: -0.02em;
+  --font-body-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body-mono: "Space Mono", "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html[data-display="b"] {
+  --font-serif-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --display-weight: 400;
+  --display-variation: normal;
+  --display-tracking: -0.005em;
+  --font-body-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html[data-display="c"] {
+  --font-serif-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --display-weight: 500;
+  --display-variation: "opsz" 36, "wght" 500;
+  --display-tracking: -0.012em;
+  --font-body-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body-mono: "IBM Plex Mono", ui-monospace, monospace;
+}

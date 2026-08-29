@@ -12,6 +12,19 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CursorPill } from "../components/CursorPill";
+import { DisplayFontSwitcher, DEFAULT_DISPLAY_OPTION } from "../components/DisplayFontSwitcher";
+
+/** All three candidate display families, loaded once with display=swap. */
+const FONT_HREF =
+  "https://fonts.googleapis.com/css2" +
+  "?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800" +
+  "&family=Instrument+Serif:ital@0;1" +
+  "&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700" +
+  "&family=Inter:wght@400;500;600" +
+  "&family=Space+Mono:wght@400;700" +
+  "&family=IBM+Plex+Sans:wght@400;500;600" +
+  "&family=IBM+Plex+Mono:wght@400;500;600" +
+  "&display=swap";
 
 function NotFoundComponent() {
   return (
@@ -89,8 +102,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
+        rel: "preload",
+        as: "style",
+        href: FONT_HREF,
+      },
+      {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+        href: FONT_HREF,
       },
       {
         rel: "stylesheet",
@@ -108,7 +126,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-display={DEFAULT_DISPLAY_OPTION}>
       <head>
         <HeadContent />
       </head>
@@ -127,6 +145,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <span aria-hidden className="paper-grain-layer" />
       <CursorPill />
+      <DisplayFontSwitcher />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>

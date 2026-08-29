@@ -18,10 +18,15 @@ export function useDisplayFontReady() {
       done();
       return;
     }
-    // Explicitly load the exact headline faces, then wait for the full set.
+    // Load whichever display family the active theme resolves to, then wait
+    // for the full set, so we never animate a partially-loaded variable font.
+    const stack =
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--font-serif-display")
+        .trim() || "serif";
     Promise.all([
-      document.fonts.load('600 3.4rem "Bodoni Moda"'),
-      document.fonts.load('italic 600 3.4rem "Bodoni Moda"'),
+      document.fonts.load(`600 3.4rem ${stack}`),
+      document.fonts.load(`italic 600 3.4rem ${stack}`),
     ])
       .catch(() => undefined)
       .then(() => document.fonts.ready)
