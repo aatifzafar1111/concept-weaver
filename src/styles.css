@@ -55,9 +55,14 @@
 
 :root {
   --radius: 0.25rem;
-  --font-serif-display: "Bodoni Moda", "Didot", "Iowan Old Style", Georgia, serif;
+  /* Display font is a single swappable variable — change it here (or via the
+     data-display theme blocks below) and every heading follows. */
+  --font-serif-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --display-weight: 600;
+  --display-variation: "opsz" 96, "SOFT" 0, "WONK" 1;
+  --display-tracking: -0.02em;
   --font-body-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-body-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body-mono: "Space Mono", "IBM Plex Mono", ui-monospace, monospace;
 
   --background: oklch(0.972 0.008 85);
   --paper: oklch(0.988 0.005 85);
