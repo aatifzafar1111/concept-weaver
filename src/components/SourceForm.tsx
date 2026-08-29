@@ -226,7 +226,7 @@ export function SourceForm({
                 whileHover={reduced || !ready ? {} : { scale: 1.01 }}
                 whileTap={reduced || !ready ? {} : { scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 480, damping: 22 }}
-                className="group inline-flex items-center gap-3 border border-accent bg-accent px-7 py-4 text-sm font-medium text-accent-foreground transition-colors hover:bg-transparent hover:text-accent disabled:cursor-not-allowed disabled:border-input disabled:bg-transparent disabled:text-muted-foreground"
+                className="group inline-flex items-center gap-3 border border-accent bg-accent px-7 py-4 text-sm font-medium text-accent-foreground transition-colors hover:bg-transparent hover:text-accent disabled:cursor-not-allowed disabled:border-transparent disabled:bg-muted disabled:text-muted-foreground"
               >
                 Build my learning workspace
                 <span
