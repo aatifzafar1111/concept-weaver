@@ -156,9 +156,15 @@
     letter-spacing: -0.015em;
   }
 
+  /* Headline: pinned to a single fixed optical size + weight so the variable
+     font never sits mid-interpolation (which renders warped strokes). */
   h1 {
     font-weight: 600;
-    font-variation-settings: "opsz" 96;
+    font-variation-settings:
+      "opsz" 96,
+      "wght" 600;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
   }
 
   :focus-visible {

@@ -1,9 +1,39 @@
 import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-/** Masked line that clips upward into place. */
+/**
+ * True once the display fonts are fully loaded, so entrance animations never
+ * run against a partially-loaded variable font (which renders warped glyphs).
+ */
+export function useDisplayFontReady() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    const done = () => {
+      if (alive) setReady(true);
+    };
+    if (typeof document === "undefined" || !document.fonts) {
+      done();
+      return;
+    }
+    // Explicitly load the exact headline faces, then wait for the full set.
+    Promise.all([
+      document.fonts.load('600 3.4rem "Bodoni Moda"'),
+      document.fonts.load('italic 600 3.4rem "Bodoni Moda"'),
+    ])
+      .catch(() => undefined)
+      .then(() => document.fonts.ready)
+      .then(done, done);
+    return () => {
+      alive = false;
+    };
+  }, []);
+  return ready;
+}
+
+/** Masked line that clips upward into place, only once fonts are loaded. */
 export function LineReveal({
   children,
   delay = 0,
@@ -14,12 +44,14 @@ export function LineReveal({
   className?: string;
 }) {
   const reduced = useReducedMotion();
+  const fontReady = useDisplayFontReady();
+  const show = fontReady || reduced;
   return (
     <span className={`block overflow-hidden pb-[0.08em] ${className ?? ""}`}>
       <motion.span
         className="block"
         initial={reduced ? { opacity: 0 } : { y: "108%" }}
-        animate={reduced ? { opacity: 1 } : { y: 0 }}
+        animate={show ? (reduced ? { opacity: 1 } : { y: 0 }) : (reduced ? { opacity: 0 } : { y: "108%" })}
         transition={{ duration: reduced ? 0.15 : 0.55, ease: EASE, delay: reduced ? 0 : delay }}
       >
         {children}
