@@ -55,10 +55,10 @@ export function SourceForm({
         <p className="label-eyebrow">Concept Chef</p>
       </Rise>
 
-      <h1 className="mt-5 max-w-3xl text-[2.6rem] leading-[1.02] md:text-[4.25rem]">
-        <LineReveal delay={0.06}>Turn a video or document</LineReveal>
+      <h1 className="mt-6 max-w-4xl text-[2.1rem] leading-[1.05] md:text-[3.4rem]">
+        <LineReveal delay={0.06}>Turn a video or document into</LineReveal>
         <LineReveal delay={0.16}>
-          into a <em className="italic">complete</em> learning workspace.
+          a <em className="italic">complete</em> learning workspace.
         </LineReveal>
       </h1>
 
