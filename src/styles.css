@@ -156,18 +156,9 @@
   h2,
   h3 {
     font-family: var(--font-serif-display);
-    font-weight: 500;
-    font-variation-settings: "opsz" 72;
-    letter-spacing: -0.015em;
-  }
-
-  /* Headline: pinned to a single fixed optical size + weight so the variable
-     font never sits mid-interpolation (which renders warped strokes). */
-  h1 {
-    font-weight: 600;
-    font-variation-settings:
-      "opsz" 96,
-      "wght" 600;
+    font-weight: var(--display-weight);
+    font-variation-settings: var(--display-variation);
+    letter-spacing: var(--display-tracking);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
   }
