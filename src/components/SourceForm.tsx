@@ -223,8 +223,8 @@ export function SourceForm({
               <motion.button
                 type="submit"
                 disabled={!ready}
-                whileHover={reduced || !ready ? undefined : { scale: 1.01 }}
-                whileTap={reduced || !ready ? undefined : { scale: 0.97 }}
+                whileHover={reduced || !ready ? {} : { scale: 1.01 }}
+                whileTap={reduced || !ready ? {} : { scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 480, damping: 22 }}
                 className="group inline-flex items-center gap-3 border border-accent bg-accent px-7 py-4 text-sm font-medium text-accent-foreground transition-colors hover:bg-transparent hover:text-accent disabled:cursor-not-allowed disabled:border-input disabled:bg-transparent disabled:text-muted-foreground"
               >
