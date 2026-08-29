@@ -55,7 +55,7 @@
 
 :root {
   --radius: 0.25rem;
-  --font-serif-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-serif-display: "Bodoni Moda", "Didot", "Iowan Old Style", Georgia, serif;
   --font-body-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-body-mono: "IBM Plex Mono", ui-monospace, monospace;
 
