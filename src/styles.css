@@ -54,9 +54,9 @@
 }
 
 :root {
-  --radius: 0.25rem;
-  /* Display font is a single swappable variable — change it here (or via the
-     data-display theme blocks below) and every heading follows. */
+--radius: 0.25rem;
+  /* Display typography: Fraunces variable serif (fixed weight 600 at rest) for
+     headlines, Space Mono for utility labels, IBM Plex Sans for body. */
   --font-serif-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --display-weight: 600;
   --display-variation: "opsz" 96, "SOFT" 0, "WONK" 1;
