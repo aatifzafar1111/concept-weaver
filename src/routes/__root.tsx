@@ -124,6 +124,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <span aria-hidden className="paper-grain-layer" />
+      <CursorPill />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
